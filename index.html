@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zev Redirect</title>
+  <style>
+    body {
+      background-color: #23272A;
+      color: white;
+    }
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align: center; padding-top: 15%;">ZEV is preparing your link</h1>
+  <h2 style="text-align: center;">Please wait...</h2>
+  <div class="loader"></div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    var str = params.get('id');
+    if (!str) {
+      document.body.innerHTML = "<h1 style='text-align:center; padding-top: 15%;'>ZEV can't find your link</h1>";
+      setTimeout(function () {
+        var redirectUrl = 'https://github.com/ZeveNor';
+        window.location.href = redirectUrl;
+      }, 5000);
+    } else {
+      const valueStr = str.split('!');
+      var user = valueStr[0];
+      var id = valueStr[1];
+      var type = valueStr[2];
+
+      if (user == "zev") {
+        setTimeout(function () {
+          if (type == "gdrive") {
+            var redirectUrl = 'https://drive.google.com/drive/folders/' + id + '?usp=sharing';
+          } else {
+            var redirectUrl = 'https://github.com/ZeveNor';
+          }
+          window.location.href = redirectUrl;
+        }, 2000);
+      } else {
+        setTimeout(function () {
+          var redirectUrl = 'https://github.com/ZeveNor';
+          window.location.href = redirectUrl;
+        }, 5000);
+      }
+    }
+  </script>
+</body>
+</html>
